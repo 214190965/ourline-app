@@ -1,5 +1,11 @@
-data:
-  env: ourline-config-dev
-  user:
-    username: peiliang
-    password: 123456
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:oracle:thin:@localhost:1521:ourline
+      username: ourline
+      password: 123456
+      driverClassName: oracle.jdbc.OracleDriver
+      initial-size: 1 #数据库初始化时的数据库连接数
+      max-active: 20 #数据库最大连接数
+      min-idle: 10 #最小空闲值
