@@ -1,0 +1,62 @@
+一、error/waring
+    1、omitted for duplicate：jar包冲突，在pom文件中重复引入同样的jar包。检擦父pom文件（到顶级父pom)
+                             中是否已经引入，如果是，则删除子项目中导入的依赖，后重启下IDEA。
+    2、我喷到的eureka服务启动成功，但没有页面的问题：@EnableEurekaServe写成了@EnableEurekaClient.
+    3、启动配置中心config报错：版本不匹配
+    3、Failed to load property source from location 'classpath:/application.yml'：
+        yml文件和项目的编码格式不一致，打开设置edtior/file encodings进行设置即可
+
+二、study
+    1、JMX：jave管理扩展（JavaManage ment Extensions）。管理、监视和配置应用，从java5开始成为标准
+           的组件。使用JMX管理应用的核心组件是托管bean（managed bean，MBean）。所谓的MBean就是暴露特定方法的JavaBean，这些方法定义了管理接口。JMX规范定义了如下4种类型的MBean：
+               标准MBean：标准MBean的管理接口是通过在固定的接口上执行反射确定的，bean类会实现这个接口；
+               动态MBean：动态MBean的管理接口是在运行时通过调用DynamicMBean接口的方法来确定的。因为管理接口不是通过静态接口定义的，因此可以在运行时改变；
+               开放MBean：开放MBean是一种特殊的动态MBean，其属性和方法只限定于原始类型、原始类型的包装类以及可以分解为原始类型或原始类型包装类的任意类型；
+               模型MBean：模型MBean也是一种特殊的动态MBean，用于充当管理接口与受管资源的中介。模型Bean并不像它们所声明的那样来编写。它们通常通过工厂生成，工厂会使用元信息来组装管理接口。
+               Spring的JMX模块可以让我们将Spring bean导出为模型MBean，这样我们就可以查看应用程序的内部情况并且能够更改配置——甚至在应用的运行期。
+           可以通过JConsole来访问（在jdk/bin/jconsole.exex)
+    2、Spring boot actuator:监控并管理应用程序
+                            监控：让我们去发现和了解程序的运行状况各种指标
+                            管理：比如说通过Actuator去做一个shutdown功能，
+                            通过访问一个特定的url去操作，默认是不开启的，另外 还可以在运行的过程中 对日志进行调整
+                          有点类似与admin,帮助管理查看接口，通过两种方式访问
+                      1）、http:/actuator/<id >
+                      2)、JMX
+                      yml文件中的配置说明：
+                      management.server.address=Actuator Endpoint 发布的地址
+                      management.server.port=Actuator Endpoint 发布的端口号
+                      management.endpoints.web.base-path=/actuator自定义端口
+                      management.endpoints.web.path-mapping.<id>=路径修改端点的访问路径(映射)，端点默认使用的是它的值
+                      management.endpoint.<id>.enabled=true开启名为id的Endpoint
+                      management.endpoints.enabled-by-default=false端点启用是选择性加入而不是选择性排除。表示禁用了所有端点
+                      暴露 Endpoint
+                      management.endpoints.jmx.exposure.exclude=jmx方式排除需要公开的端点
+                      management.endpoints.jmx.exposure.include=*jmx方式包含需要公开的端点
+                      management.endpoints.web.exposure.exclude=http方式排除需要公开的端点
+                      management.endpoints.web.exposure.include=info, health
+    3、zuul网官：前端页面访问网官的地址，网官通过映射访问各个微服务。
+        zuul.routes.sensitiveHeaders:过滤信息，
+          eg:zuul.routes.sensitiveHeaders = Cookie,则Cookie不会传给下游服务
+
+    4、配置中心
+    服务端使用（ourline-config）spring-cloud-config-server
+    客户端使用（ourline-user）spring-cloud-starter-config。
+
+
+   @MapperScan:很容易缺包（mybatis-spring-boot-starter），会导致扫描不到mapper，导致报错
+
+   关于mybatis.dtd:在设置的schemas and dtds下有个路径，它会采用这个路径对应的文件，一般
+                  删除即可。
+三、新增数据库ourline:把另一个orcl服务关闭可登录（其实就是端口被占用），在客户端的tnsnames.ora中进行相关配置。
+    在新建用户的时候指定的空间一定要在指定的目录下（和system,users等一个目录），
+    1、建表的一些参数配置
+    tablespace TBSL_SDDQ --表段X_SMALL_AREA放在表空间TBSL_SDDQ中
+      pctfree 10 --块保留10%的空间留给更新该块数据使用
+      initrans 1 --初始化事务槽的个数
+      maxtrans 255 --最大事务槽的个数
+      storage --存储参数
+      (
+        initial 64k --区段(extent)一次扩展64k
+        minextents 1 --最小区段数
+        maxextents unlimited --最大区段无限制
+      );

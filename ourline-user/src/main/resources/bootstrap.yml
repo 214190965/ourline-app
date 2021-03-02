@@ -1,9 +1,9 @@
 server:
-  port: 20193
+  port: 20194
 
 eureka:
   instance:
-    instance-id: ourline-serve
+    instance-id: ourline-user
   client:
     fetch-registry: true #是否去注册中心获取其他服务的地址
     register-with-eureka: true #是否向注册中心注册自己
@@ -12,14 +12,13 @@ eureka:
 #获取配置中心文件
 spring:
   application:
-    name: ourline-serve
+    name: ourline-user
   cloud:
     config:
-      name: ourline-serve
+      name: ourline-user
       discovery:
         enabled: true
         service-id: ourline-config
       profile: dev  #文件名为name || profile,如果没有指定name,默认使用spring.application.name代替name,所以文件的名称要注意
 mybatis:
   mapper-locations: classpath:mapper/*.xml #mybatis mapper文件存放路径
-#word: hello

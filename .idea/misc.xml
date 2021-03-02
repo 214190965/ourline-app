@@ -8,8 +8,13 @@
         <option value="$PROJECT_DIR$/ourline-user/pom.xml" />
         <option value="$PROJECT_DIR$/ourline-serve/pom.xml" />
         <option value="$PROJECT_DIR$/ourline-eurake/pom.xml" />
+        <option value="$PROJECT_DIR$/ourline-config/pom.xml" />
+        <option value="$PROJECT_DIR$/ourline-zuul/pom.xml" />
       </list>
     </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://mybatis.org/dtd/mybatis-3-mapper.dtd" location="$USER_HOME$/.IntelliJIdea2019.1/system/extResources/b36fadae_mybatis-3-mapper.dtd.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

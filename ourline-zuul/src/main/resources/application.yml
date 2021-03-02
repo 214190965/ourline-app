@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: ourline-zuul
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30 #eureka-serve心跳间隔时间（ms),若在该时间内没有收到下一次心跳，则移除该instance
+    #心跳机制是服务定时发送一个自定义的结构体(心跳包)，让对方知道自己还活着，以确保连接的有效性的机制。
+    lease-renewal-interval-in-seconds: 10 #eureka-client心跳发送频率，须小于上面的30
+    prefer-ip-address: true
+    ip-address: 127.0.0.1 #如果不指定，则为eureka的ip地址，需要指定prefer-ip-address为true.
+    instance-id: ourline-zuul
+  client:
+      fetch-registry: true #是否去注册中心获取其他服务的地址
+      register-with-eureka: true #是否向注册中心注册自己
+      service-url:
+        defaultZone: http://localhost:20190/eureka
+server:
+  port: 20192
+zuul:
+  retryable: true  #因为zuul是整合ribbon和hystrix的另一个客户端，所以我们需要自己导入spring-retry坐标，并且开启服务
+  host:
+    max-total-connections: 20 #默认20
+    max-per-route-connections: 20 #默认20
+    connect-timeout-millis: 20000 #这个也是超时策略，路由方式为zuul.host开头的生效，ribbon为serviceId的方式
+    socket-timeout-millis: 100000
+  ignored-services: "*" #隐藏所有微服务名称（使用微服务名称无法访问到服务）
+  prefix: /ourline #服务前缀名
+  routes:
+    ourline-user:
+      path: /user/**
+      serviceId: ourline-user #对应的是spring.applicatoin.name
+      sensitiveHeaders: "*"
+      stripPrefix: false #是否把前缀加载路径上，默认为true不加，指定了prefix，则设置该值为false
+ribbon:
+  eureka:
+    enabled: true
+  ConnectTimeout: 500 # 连接超时时间（ms），默认值为250ms
+  ReadTimeout: 100000 # 通信超时时间（ms），默认值为2000ms
+  SocketTimeout: 100000
+  OkToRetryOnAllOperations: false # 是否对所有操作都进行重试
+  MaxAutoRetriesNextServer: 1 # 对同一服务不同实例重试次数（同一服务下集群个数的重试次数）
+  MaxAutoRetries: 1 # 对同一实例重试的次数（单个集群节点服务重试的次数）
+# 开启熔断机制，超过x秒即开启熔断机制，网关内的时间排序：zuul的通信时间 > hystrix熔断时间 > retry重试时间
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500000
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        #include: health,info
+        include: "*"

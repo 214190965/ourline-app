@@ -1,1 +1,25 @@
+server:
+  port: 20191
+
+eureka:
+  instance:
+    instance-id: ourline-config
+  client:
+    fetch-registry: true #是否去注册中心获取其他服务的地址
+    register-with-eureka: true #是否向注册中心注册自己
+    service-url:
+      defaultZone: http://localhost:20190/eureka
+
+spring:
+  application:
+    name: ourline-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/214190965/ourline-app.git
+          #username: user
+          #password: pwd
+          default-label: master
+          search-paths: config
 
