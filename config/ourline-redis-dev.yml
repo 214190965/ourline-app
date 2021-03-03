@@ -1,0 +1,18 @@
+spring:
+  #redis相关配置
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    host: 127.0.0.1
+    #host: 192.168.0.119
+    port: 6379
+    password: phone18807086632
+    #sentinel:
+    #master: mymaster
+    #nodes: 192.168.123.119:26379, 192.168.123.119:26380, 192.168.123.119:26381
+    #master: 123456
+    #nodes: 192.168.0.101:6379
