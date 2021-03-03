@@ -18,8 +18,8 @@ spring:
       server:
         git:
           uri: https://github.com/214190965/ourline-app.git
-          #username: user
-          #password: pwd
+          username: 214190965@qq.com
+          password: phone18807086632
           default-label: master
           search-paths: config
 

@@ -31,6 +31,9 @@ zuul:
       serviceId: ourline-user #对应的是spring.applicatoin.name
       sensitiveHeaders: "*"
       stripPrefix: false #是否把前缀加载路径上，默认为true不加，指定了prefix，则设置该值为false
+#日志
+logging:
+  config: classpath:log4j2.xml
 ribbon:
   eureka:
     enabled: true

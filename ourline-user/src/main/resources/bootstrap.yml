@@ -12,7 +12,7 @@ eureka:
 #获取配置中心文件
 spring:
   application:
-    name: ourline-user,ourline-redis
+    name: ourline-user
   cloud:
     config:
       name: ourline-user
