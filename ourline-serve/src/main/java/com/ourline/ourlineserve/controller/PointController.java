@@ -1,7 +1,8 @@
 package com.ourline.ourlineserve.controller;
 
-import com.ourline.framework.BaseResult;
-import com.ourline.framework.MapperUtils;
+
+import com.ourline.ourlinecommon.code.BaseResult;
+import com.ourline.ourlinecommon.util.MapperUtils;
 import com.ourline.ourlineserve.service.IPointService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ public class PointController {
      * */
     @RequestMapping(value = "login",method = RequestMethod.POST)
     public String userLogin(@RequestParam("owner") String owner) throws Exception {
-        BaseResult baseResult =  IPointService.getPointsByOwner(owner);
+        BaseResult baseResult =  iPointService.getPointsByOwner(owner);
         return MapperUtils.obj2json(baseResult);
     }
 }

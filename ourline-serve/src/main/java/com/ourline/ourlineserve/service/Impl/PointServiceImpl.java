@@ -1,6 +1,6 @@
 package com.ourline.ourlineserve.service.Impl;
 
-import com.ourline.framework.BaseResult;
+import com.ourline.ourlinecommon.code.BaseResult;
 import com.ourline.ourlineserve.service.IPointService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

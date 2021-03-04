@@ -1,7 +1,7 @@
 package com.ourline.ourlineuser.service;
 
-import com.ourline.framework.BaseResult;
 
+import com.ourline.ourlinecommon.code.BaseResult;
 
 public interface IUserService {
     /**

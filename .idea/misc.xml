@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/ourline-eurake/pom.xml" />
         <option value="$PROJECT_DIR$/ourline-config/pom.xml" />
         <option value="$PROJECT_DIR$/ourline-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/ourline-common/pom.xml" />
       </list>
     </option>
   </component>

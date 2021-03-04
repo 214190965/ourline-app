@@ -20,9 +20,9 @@
     <dependencies>
         <!--公共类依赖-->
         <dependency>
-            <artifactId>ourline-common</artifactId>
             <groupId>ourline-app</groupId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>ourline-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

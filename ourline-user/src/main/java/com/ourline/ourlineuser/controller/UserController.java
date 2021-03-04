@@ -1,8 +1,7 @@
 package com.ourline.ourlineuser.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ourline.framework.BaseResult;
-import com.ourline.framework.MapperUtils;
+import com.ourline.ourlinecommon.code.BaseResult;
+import com.ourline.ourlinecommon.util.MapperUtils;
 import com.ourline.ourlineuser.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 

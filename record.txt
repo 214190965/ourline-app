@@ -5,7 +5,10 @@
     3、启动配置中心config报错：版本不匹配
     3、Failed to load property source from location 'classpath:/application.yml'：
         yml文件和项目的编码格式不一致，打开设置edtior/file encodings进行设置即可
-
+    5、maven面板中项目为灰色：该项目的pom.xml文件被忽略。file-settion-maven-ignored files设置
+    6、重复困扰的一个问题@SpringBootApplication(scanBasePackages = "com.ourline"),本质上还是用了
+       @ComponentScan获取了所有加入spring容器中的bead,@SpringBootApplication包含了@Component注解，
+       所有的问题都是因为没加这个
 二、study
     1、JMX：jave管理扩展（JavaManage ment Extensions）。管理、监视和配置应用，从java5开始成为标准
            的组件。使用JMX管理应用的核心组件是托管bean（managed bean，MBean）。所谓的MBean就是暴露特定方法的JavaBean，这些方法定义了管理接口。JMX规范定义了如下4种类型的MBean：
@@ -60,3 +63,5 @@
         minextents 1 --最小区段数
         maxextents unlimited --最大区段无限制
       );
+
+
