@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @ClassName CorsUitl
  * @Description 跨域
- * @author LUKE.LEE
- * @date 2019-11-28 04:30:56
- * @Copyright
+ * @date 20210225
  */
 public class CorsUitl {
 

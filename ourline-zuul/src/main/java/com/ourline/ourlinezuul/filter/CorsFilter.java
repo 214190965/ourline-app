@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @ClassName CorsFilter
  * @Description 对跨域的欲请求options方法进行过滤
- * @author LUKE.LEE
- * @date 2019-11-28 04:31:57
- * @Copyright
+ * @date 20210225
  */
 @Component
 public class CorsFilter extends ZuulFilter {

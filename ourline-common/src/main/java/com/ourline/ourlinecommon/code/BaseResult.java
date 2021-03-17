@@ -1,9 +1,12 @@
 package com.ourline.ourlinecommon.code;
 
-import com.ourline.ourlinecommon.code.StatusCode;
-
 import java.io.Serializable;
 
+/**
+ * @ClassName BaseResult
+ * @Description 数据返回格式规范
+ * @date 20210315
+ */
 public class BaseResult implements Serializable {
     private static final long serialVersionUID = -3948389268046368059L;
     /**

@@ -15,9 +15,7 @@ import java.io.IOException;
 /**
  * @ClassName ErrorFilter
  * @Description 网关异常统一处理
- * @author LUKE.LEE
- * @date 2019-11-28 04:58:27
- * @Copyright
+ * @date 20210317
  */
 @Component
 public class ErrorFilter extends SendErrorFilter {

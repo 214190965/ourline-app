@@ -8,7 +8,6 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * @ClassName IDGenerator
  * @Description ID生成器，利用原子操作，保证同一批次不重复，添加日期字符串，保证每天不重复
- * @author peiliang
  * @date 20210315
  */
 public class IDGenerator {

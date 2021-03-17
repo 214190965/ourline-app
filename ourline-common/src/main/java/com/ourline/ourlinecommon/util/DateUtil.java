@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * @ClassName DateUtil
  * @Description 处理日期工具类
- * @author peiliang
  * @date 20210315
  */
 public class DateUtil {
