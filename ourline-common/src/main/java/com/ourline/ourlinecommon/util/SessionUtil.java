@@ -103,7 +103,13 @@ public class SessionUtil {
 		return null;
 	}
 
-
+	/**
+	 * 获取当前界面所属对象
+	 * */
+	public String getCurrentOwner() {
+		//它不需要存redis，前端用store存储
+		return httpContext.getRequest().getHeader(WebConstants.SESSION_OWNER);
+	}
 
 	/**
 	 * @Title putRedisUser

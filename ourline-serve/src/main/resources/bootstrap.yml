@@ -11,11 +11,22 @@ eureka:
       defaultZone: http://localhost:20190/eureka
 #获取配置中心文件
 spring:
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    host: 127.0.0.1
+    #host: 192.168.0.119
+    port: 6379
+    password: phone18807086632
   application:
     name: ourline-serve
   cloud:
     config:
-      name: ourline-serve
+      name: ourline-user #和user公用数据库配置
       discovery:
         enabled: true
         service-id: ourline-config

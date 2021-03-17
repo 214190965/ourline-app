@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ourline.ourlineserve.mapper.LineMapper">
+    <!--获取用户路径-->
+    <select id="getUserLine" resultType="Map">
+        select
+         a.line_id as "id",
+         b1.point_x as "x1",
+         b1.point_y as "y1",
+         a.line_x2 as "x2",
+         a.line_y2 as "y2",
+         a.line_x3 as "x3",
+         a.line_y3 as "y3",
+         b2.point_x as "x4",
+         b2.point_y as "y4"
+         from t_app_line a
+         inner join t_app_point b1
+         on b1.point_id = a.line_start
+         inner join t_app_point b2
+         on b2.point_id = a.line_end
+         where b1.point_owner = #{id,jdbcType = VARCHAR}
+         and b2.point_owner = #{id,jdbcType = VARCHAR}
+    </select>
+    <!--节点路径映射-->
+    <select id="getPointLineMap" resultType="Map">
+        select
+         'L' || a.line_id as "lineid"
+         from t_app_line a
+         where a.line_end = #{id,jdbcType = VARCHAR}
+         union
+         select
+         'R' || a.line_id as "lineid"
+         from t_app_line a
+         where a.line_start = #{id,jdbcType = VARCHAR}
+    </select>
+
+</mapper>

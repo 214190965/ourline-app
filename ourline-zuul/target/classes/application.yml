@@ -1,4 +1,15 @@
 spring:
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    host: 127.0.0.1
+    #host: 192.168.0.119
+    port: 6379
+    password: phone18807086632
   application:
     name: ourline-zuul
 eureka:
@@ -27,10 +38,18 @@ zuul:
   prefix: /ourline #服务前缀名
   routes:
     ourline-user:
-      path: /user/**
+      path: /user/**  #路径下所有连接
       serviceId: ourline-user #对应的是spring.applicatoin.name
       sensitiveHeaders: "*"
       stripPrefix: false #是否把前缀加载路径上，默认为true不加，指定了prefix，则设置该值为false
+    ourline-server:
+      path: /serve/**
+      serviceId: ourline-serve
+      sensitiveHeaders: "*"
+      stripPrefix: false
+#日志
+logging:
+  config: classpath:log4j2.xml
 ribbon:
   eureka:
     enabled: true

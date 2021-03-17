@@ -138,7 +138,6 @@ public class RedisServiceImpl implements IRedisService {
      */
     @Override
     public boolean hashKey(String key) {
-
         return redisTemplate.hasKey(key);
     }
 

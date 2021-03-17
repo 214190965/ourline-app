@@ -21,9 +21,9 @@ public class UserController {
      * 用户登录
      * */
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public String userLogin(@RequestParam("username") String username,
+    public String userLogin(@RequestParam("userid") String userid,
                             @RequestParam("password") String password) throws Exception {
-        BaseResult baseResult =  userService.loginByNameAndPwd(username,password);
+        BaseResult baseResult =  userService.loginByNameAndPwd(userid,password);
         return MapperUtils.obj2json(baseResult);
     }
 }

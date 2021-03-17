@@ -14,6 +14,11 @@ public class WebConstants {
 	public static final String SESSION_TOKEN = "Authorization";
 
 	/**
+	 * @Fields SESSION_OWNER request请求header中携带sessionid的属性名称
+	 */
+	public static final String SESSION_OWNER = "CurrentOwner";
+
+	/**
 	 * @Fields SESSION_LANG request请求header中携带lang的属性名称
 	 */
 	public static final String SESSION_LANG = "CurrentLanguage";

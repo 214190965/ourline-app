@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ourline.ourlineuser.mapper.UserMapper">
-
-    <select id="selectWithNameAndPwd" resultType="java.lang.Integer">
-        select 1 from t_app_user a
-        where a.user_name = #{username,jdbcType = VARCHAR}
-        and a.user_pwd = #{password,jdbcType = VARCHAR}
+<mapper namespace="com.ourline.ourlineserve.mapper.PointMapper">
+    <select id="selectUserPoint" resultType="Map">
+        select
+        a.point_id as "id",
+        a.point_x as "x",
+        a.point_y as "y"
+        from t_app_point a
+        where a.point_owner = #{id,jdbcType = VARCHAR}
     </select>
+    <!--新增节点-->
+    <insert id="insertPoint" parameterType="java.util.Map">
+        insert into t_app_point
+        (point_id,
+        point_owner,
+        point_kind,
+        point_size,
+        point_color,
+        point_x,
+        point_y,
+        create_user,
+        create_time)
+        values
+        (#{point.id,jdbcType = VARCHAR},
+        #{point.owner,jdbcType = VARCHAR},
+        #{point.kind,jdbcType = VARCHAR},
+        #{point.size,jdbcType = VARCHAR},
+        #{point.color,jdbcType = VARCHAR},
+        #{point.x,jdbcType = VARCHAR},
+        #{point.y,jdbcType = VARCHAR},
+        #{point.user,jdbcType = VARCHAR},
+        #{point.time,jdbcType = VARCHAR})
+    </insert>
+    <!--修改节点-->
+    <update id="updatePoint" parameterType="java.util.Map">
+        update t_app_point
+        set
+        <if test="point.size != null and point.size != ''">
+        point_size = #{point.size,jdbcType = VARCHAR},
+        </if>
+        <if test="point.color != null and point.color != ''">
+        point_color = #{point.color,jdbcType = VARCHAR},
+        </if>
+        <if test="point.x != null and point.x != ''">
+        point_x = #{point.x,jdbcType = VARCHAR},
+        </if>
+        <if test="point.y != null and point.y != ''">
+        point_y = #{point.y,jdbcType = VARCHAR},
+        </if>
+        <if test="point.user != null and point.user != ''">
+        update_user = #{point.user,jdbcType = VARCHAR},
+        </if>
+        <if test="point.time != null and point.time != ''">
+        update_time = #{point.time,jdbcType = VARCHAR}
+        </if>
+        where point_id = #{point.id,jdbcType = VARCHAR}
+    </update>
 </mapper>

@@ -3,7 +3,7 @@ package com.ourline.ourlinezuul.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
-import com.ourline.framework.redis.service.IRedisService;
+import com.ourline.ourlinecommon.redis.service.IRedisService;
 import io.micrometer.core.instrument.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @ClassName LoginFilter
@@ -44,7 +45,7 @@ public class LoginFilter extends ZuulFilter {
 
 	private static Logger logger = LoggerFactory.getLogger(LoginFilter.class);
 
-	@Resource
+	@Resource(name = "redisService")
 	private IRedisService redis;
 
 
@@ -133,7 +134,7 @@ public class LoginFilter extends ZuulFilter {
 
 		}
 		// 更新Redis过期时间
-		redis.expire(token, 1800,null);
+		redis.expire(token, 1800, TimeUnit.SECONDS);
 
 		return null;
 
